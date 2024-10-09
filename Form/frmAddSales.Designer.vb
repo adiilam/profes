@@ -22,15 +22,21 @@ Partial Class frmAddSales
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
         pnlTitle = New Panel()
         lblTitle = New Label()
         dgvGetItem = New DataGridView()
+        clmNo = New DataGridViewTextBoxColumn()
+        clmItem = New DataGridViewTextBoxColumn()
+        clmQty = New DataGridViewTextBoxColumn()
+        clmPrice = New DataGridViewTextBoxColumn()
+        clmTotal = New DataGridViewTextBoxColumn()
+        clmId = New DataGridViewTextBoxColumn()
         btnAdd = New Button()
         lblSoNo = New Label()
         lblOrdDate = New Label()
@@ -47,12 +53,10 @@ Partial Class frmAddSales
         btnSave = New Button()
         btnCancel = New Button()
         btnDelete = New Button()
-        clmNo = New DataGridViewTextBoxColumn()
-        clmItem = New DataGridViewTextBoxColumn()
-        clmQty = New DataGridViewTextBoxColumn()
-        clmPrice = New DataGridViewTextBoxColumn()
-        clmTotal = New DataGridViewTextBoxColumn()
-        clmId = New DataGridViewTextBoxColumn()
+        txtTotQty = New TextBox()
+        Label1 = New Label()
+        txtTotAmount = New TextBox()
+        Label2 = New Label()
         pnlTitle.SuspendLayout()
         CType(dgvGetItem, ComponentModel.ISupportInitialize).BeginInit()
         pnlInfo.SuspendLayout()
@@ -85,14 +89,14 @@ Partial Class frmAddSales
         dgvGetItem.AllowUserToResizeColumns = False
         dgvGetItem.AllowUserToResizeRows = False
         dgvGetItem.BackgroundColor = SystemColors.AppWorkspace
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = SystemColors.Control
-        DataGridViewCellStyle1.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        dgvGetItem.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = SystemColors.Control
+        DataGridViewCellStyle7.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        DataGridViewCellStyle7.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = DataGridViewTriState.True
+        dgvGetItem.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         dgvGetItem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         dgvGetItem.Columns.AddRange(New DataGridViewColumn() {clmNo, clmItem, clmQty, clmPrice, clmTotal, clmId})
         dgvGetItem.Location = New Point(12, 306)
@@ -102,6 +106,63 @@ Partial Class frmAddSales
         dgvGetItem.RowTemplate.Height = 25
         dgvGetItem.Size = New Size(900, 218)
         dgvGetItem.TabIndex = 9
+        ' 
+        ' clmNo
+        ' 
+        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
+        clmNo.DefaultCellStyle = DataGridViewCellStyle8
+        clmNo.Frozen = True
+        clmNo.HeaderText = "No"
+        clmNo.Name = "clmNo"
+        clmNo.ReadOnly = True
+        clmNo.SortMode = DataGridViewColumnSortMode.Programmatic
+        clmNo.Width = 50
+        ' 
+        ' clmItem
+        ' 
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft
+        clmItem.DefaultCellStyle = DataGridViewCellStyle9
+        clmItem.HeaderText = "ITEM NAME"
+        clmItem.Name = "clmItem"
+        clmItem.Width = 250
+        ' 
+        ' clmQty
+        ' 
+        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N2"
+        DataGridViewCellStyle10.NullValue = Nothing
+        clmQty.DefaultCellStyle = DataGridViewCellStyle10
+        clmQty.HeaderText = "QTY"
+        clmQty.Name = "clmQty"
+        clmQty.Width = 200
+        ' 
+        ' clmPrice
+        ' 
+        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.Format = "N2"
+        DataGridViewCellStyle11.NullValue = Nothing
+        clmPrice.DefaultCellStyle = DataGridViewCellStyle11
+        clmPrice.HeaderText = "PRICE"
+        clmPrice.Name = "clmPrice"
+        clmPrice.Width = 250
+        ' 
+        ' clmTotal
+        ' 
+        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.Format = "N2"
+        DataGridViewCellStyle12.NullValue = Nothing
+        clmTotal.DefaultCellStyle = DataGridViewCellStyle12
+        clmTotal.HeaderText = "TOTAL"
+        clmTotal.Name = "clmTotal"
+        clmTotal.ReadOnly = True
+        clmTotal.Width = 250
+        ' 
+        ' clmId
+        ' 
+        clmId.HeaderText = "ID"
+        clmId.Name = "clmId"
+        clmId.ReadOnly = True
+        clmId.Visible = False
         ' 
         ' btnAdd
         ' 
@@ -236,7 +297,7 @@ Partial Class frmAddSales
         btnSave.BackColor = Color.Firebrick
         btnSave.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         btnSave.ForeColor = SystemColors.ButtonFace
-        btnSave.Location = New Point(196, 538)
+        btnSave.Location = New Point(14, 533)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(130, 42)
         btnSave.TabIndex = 20
@@ -248,7 +309,7 @@ Partial Class frmAddSales
         btnCancel.BackColor = Color.MidnightBlue
         btnCancel.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         btnCancel.ForeColor = SystemColors.ButtonFace
-        btnCancel.Location = New Point(486, 538)
+        btnCancel.Location = New Point(304, 533)
         btnCancel.Name = "btnCancel"
         btnCancel.Size = New Size(130, 42)
         btnCancel.TabIndex = 21
@@ -260,76 +321,59 @@ Partial Class frmAddSales
         btnDelete.BackColor = Color.RoyalBlue
         btnDelete.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         btnDelete.ForeColor = SystemColors.ButtonFace
-        btnDelete.Location = New Point(344, 538)
+        btnDelete.Location = New Point(162, 533)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(130, 42)
         btnDelete.TabIndex = 22
         btnDelete.Text = "Delete Row"
         btnDelete.UseVisualStyleBackColor = False
         ' 
-        ' clmNo
+        ' txtTotQty
         ' 
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        clmNo.DefaultCellStyle = DataGridViewCellStyle2
-        clmNo.Frozen = True
-        clmNo.HeaderText = "No"
-        clmNo.Name = "clmNo"
-        clmNo.ReadOnly = True
-        clmNo.SortMode = DataGridViewColumnSortMode.Programmatic
-        clmNo.Width = 50
+        txtTotQty.Enabled = False
+        txtTotQty.Location = New Point(799, 587)
+        txtTotQty.Name = "txtTotQty"
+        txtTotQty.Size = New Size(113, 23)
+        txtTotQty.TabIndex = 24
         ' 
-        ' clmItem
+        ' Label1
         ' 
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        clmItem.DefaultCellStyle = DataGridViewCellStyle3
-        clmItem.HeaderText = "ITEM NAME"
-        clmItem.Name = "clmItem"
-        clmItem.Width = 250
+        Label1.AutoSize = True
+        Label1.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label1.Location = New Point(728, 589)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(65, 18)
+        Label1.TabIndex = 23
+        Label1.Text = "Total QTY"
         ' 
-        ' clmQty
+        ' txtTotAmount
         ' 
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        clmQty.DefaultCellStyle = DataGridViewCellStyle4
-        clmQty.HeaderText = "QTY"
-        clmQty.Name = "clmQty"
-        clmQty.Width = 200
+        txtTotAmount.Enabled = False
+        txtTotAmount.Location = New Point(799, 617)
+        txtTotAmount.Name = "txtTotAmount"
+        txtTotAmount.Size = New Size(113, 23)
+        txtTotAmount.TabIndex = 26
         ' 
-        ' clmPrice
+        ' Label2
         ' 
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        clmPrice.DefaultCellStyle = DataGridViewCellStyle5
-        clmPrice.HeaderText = "PRICE"
-        clmPrice.Name = "clmPrice"
-        clmPrice.Width = 250
-        ' 
-        ' clmTotal
-        ' 
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.Format = "N2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        clmTotal.DefaultCellStyle = DataGridViewCellStyle6
-        clmTotal.HeaderText = "TOTAL"
-        clmTotal.Name = "clmTotal"
-        clmTotal.ReadOnly = True
-        clmTotal.Width = 250
-        ' 
-        ' clmId
-        ' 
-        clmId.HeaderText = "ID"
-        clmId.Name = "clmId"
-        clmId.ReadOnly = True
-        clmId.Visible = False
+        Label2.AutoSize = True
+        Label2.Font = New Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label2.Location = New Point(702, 619)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(91, 18)
+        Label2.TabIndex = 25
+        Label2.Text = "Total Amount"
         ' 
         ' frmAddSales
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.SteelBlue
-        ClientSize = New Size(936, 616)
+        ClientSize = New Size(942, 652)
+        Controls.Add(txtTotAmount)
+        Controls.Add(Label2)
+        Controls.Add(txtTotQty)
+        Controls.Add(Label1)
         Controls.Add(btnDelete)
         Controls.Add(btnCancel)
         Controls.Add(btnSave)
@@ -387,4 +431,8 @@ Partial Class frmAddSales
     Friend WithEvents clmPrice As DataGridViewTextBoxColumn
     Friend WithEvents clmTotal As DataGridViewTextBoxColumn
     Friend WithEvents clmId As DataGridViewTextBoxColumn
+    Friend WithEvents txtTotQty As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtTotAmount As TextBox
+    Friend WithEvents Label2 As Label
 End Class

@@ -41,6 +41,34 @@ Public Class frmAddSales
         End If
     End Sub
 
+    Private Sub CalculateGrandTotal()
+        Dim grandTotal As Decimal = 0
+
+        For Each row As DataGridViewRow In dgvGetItem.Rows
+            If Not row.IsNewRow Then
+                If IsNumeric(row.Cells(4).Value) Then
+                    grandTotal += Convert.ToDecimal(row.Cells(4).Value)
+                End If
+            End If
+        Next
+
+        txtTotAmount.Text = grandTotal.ToString("N2")
+    End Sub
+
+    Private Sub CalculateQtyTotal()
+        Dim grandTotal As Decimal = 0
+
+        For Each row As DataGridViewRow In dgvGetItem.Rows
+            If Not row.IsNewRow Then
+                If IsNumeric(row.Cells(2).Value) Then
+                    grandTotal += Convert.ToDecimal(row.Cells(2).Value)
+                End If
+            End If
+        Next
+
+        txtTotQty.Text = grandTotal.ToString("N2")
+    End Sub
+
     Private Sub GenerateOrderNumber()
 
         Dim sql = "SELECT TOP 1 ORDER_NO FROM SO_ORDER ORDER BY ORDER_NO DESC"
@@ -50,7 +78,7 @@ Public Class frmAddSales
         If Baca.Read Then
             Dim lastOrderNumberString As String = Baca(0).ToString()
 
-            Dim orderPrefix As String = lastOrderNumberString.Substring(0, 3) ' Format 50
+            Dim orderPrefix As String = lastOrderNumberString.Substring(0, 3) ' Format 50_
             Dim orderNumber As Integer = Convert.ToInt32(lastOrderNumberString.Substring(4)) 'Angka terakhir(001)
 
             orderNumber += 1
@@ -127,6 +155,8 @@ Public Class frmAddSales
         If Me.dgvGetItem.Rows.Count > 0 Then
             Me.btnAdd.Enabled = True
             Me.btnDelete.Enabled = True
+            CalculateQtyTotal()
+            CalculateGrandTotal()
         End If
 
     End Sub
@@ -172,6 +202,9 @@ Public Class frmAddSales
             Next
         End If
 
+        CalculateQtyTotal()
+        CalculateGrandTotal()
+
         If Me.dgvGetItem.Rows.Count = 0 Then
             Me.cmbCust.Items.Clear()
             Me.cmbCust.Text = ""
@@ -193,6 +226,7 @@ Public Class frmAddSales
             Dim cellValue As Decimal
             If Decimal.TryParse(dgvGetItem.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString(), cellValue) Then
                 dgvGetItem.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = cellValue.ToString("N2")
+                CalculateQtyTotal()
             End If
         End If
 
@@ -200,6 +234,7 @@ Public Class frmAddSales
             Dim dQty As Decimal = Me.dgvGetItem.CurrentRow.Cells(2).Value
             Dim dHrg As Decimal = Me.dgvGetItem.CurrentRow.Cells(3).Value
             Me.dgvGetItem.CurrentRow.Cells(4).Value = dQty * dHrg
+            CalculateGrandTotal()
         End If
     End Sub
 
