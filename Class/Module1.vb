@@ -1,14 +1,4 @@
-﻿Imports System
-Imports System.IO
-Imports System.Text
-Imports System.Data.SqlClient
-Imports System.Data.OleDb
-Imports System.Drawing
-Imports System.Drawing.Printing
-Imports System.Security.Cryptography
-Imports System.Runtime.InteropServices
-Imports System.Text.RegularExpressions
-Imports System.Globalization
+﻿Imports System.Data.SqlClient
 
 Public Module module1
     Public frm As New Windows.Forms.Form
